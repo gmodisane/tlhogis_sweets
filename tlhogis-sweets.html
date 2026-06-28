@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tlhogi's Sweets & Treats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+<style>
+  /* =====================
+     TOKENS
+  ===================== */
+  :root {
+    --gold:        #B8893A;
+    --gold-light:  #D4AA6A;
+    --gold-pale:   #F5EDDB;
+    --gold-faint:  #FAF5EC;
+    --rose:        #C4768A;
+    --rose-light:  #E8B4C0;
+    --rose-pale:   #FDF2F5;
+    --choc:        #2E1B0E;
+    --choc-mid:    #5C3D28;
+    --choc-light:  #8B6145;
+    --ivory:       #FAF8F4;
+    --ivory-deep:  #F0EBE0;
+    --white:       #FFFFFF;
+    --text-body:   #3A2515;
+    --text-muted:  #7A6050;
+
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body:    'Jost', system-ui, sans-serif;
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-pill: 100px;
+  }
+
+  /* =====================
+     RESET & BASE
+  ===================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--ivory);
+    color: var(--text-body);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  button { cursor: pointer; font-family: var(--font-body); }
+
+  /* =====================
+     UTILITIES
+  ===================== */
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .display-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--choc);
+  }
+  .display-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+  .section-divider {
+    width: 48px; height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--rose));
+    margin: 1rem 0;
+  }
+  .section-divider.center { margin: 1rem auto; }
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: var(--white);
+    padding: 14px 32px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .btn-gold:hover { background: var(--gold-light); }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--gold);
+    padding: 13px 32px;
+    border: 1.5px solid var(--gold);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--gold-faint); }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .text-center { text-align: center; }
+
+  /* =====================
+     ANNOUNCEMENT BAR
+  ===================== */
+  .announce-bar {
+    background: var(--choc);
+    color: var(--gold-light);
+    text-align: center;
+    padding: 10px 1rem;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    font-weight: 300;
+  }
+  .announce-bar span { color: var(--rose-light); }
+
+  /* =====================
+     NAV
+  ===================== */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ivory);
+    border-bottom: 1px solid var(--ivory-deep);
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--choc);
+    line-height: 1.1;
+  }
+  .nav-logo span { display: block; font-size: 11px; font-family: var(--font-body); font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-top: 2px; }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--choc);
+    color: var(--gold-light);
+    border: none;
+    padding: 10px 24px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--choc-mid); }
+  .nav-mobile-btn { display: none; background: none; border: none; font-size: 24px; color: var(--choc); }
+
+  /* =====================
+     HERO
+  ===================== */
+  .hero {
+    background: var(--choc);
+    padding: 5rem 2rem 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60%; height: 100%;
+    background: radial-gradient(ellipse at 80% 40%, rgba(180,135,58,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: flex-end;
+  }
+  .hero-text { padding-bottom: 5rem; }
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose-light);
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--rose-light);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--gold-pale);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: italic; color: var(--rose-light); }
+  .hero-body {
+    color: rgba(245,237,219,0.7);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 440px;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .hero-cake-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-bottom: 0;
+  }
+  /* Three illustrated product cards in the hero */
+  .hero-products {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+  .hero-prod-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(180,135,58,0.25);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    padding: 1.25rem 1rem 0;
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hero-prod-card.tall { padding-top: 2rem; }
+  .hero-prod-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 400;
+    padding-bottom: 1rem;
+  }
+
+  /* =====================
+     TRUST STRIP
+  ===================== */
+  .trust-strip {
+    background: var(--gold);
+    padding: 14px 2rem;
+  }
+  .trust-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--choc);
+  }
+  .trust-item i { font-size: 16px; }
+
+  /* =====================
+     ABOUT
+  ===================== */
+  .about { padding: 6rem 2rem; }
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-portrait {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--ivory-deep);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--gold-pale);
+  }
+  .about-portrait-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--gold-light);
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+  .about-portrait-inner i { font-size: 48px; opacity: 0.4; }
+  .about-badge {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    width: 100px; height: 100px;
+    background: var(--rose);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid var(--ivory);
+  }
+  .about-badge-num {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1;
+  }
+  .about-badge-label {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .about-text .eyebrow { margin-bottom: 0.75rem; }
+  .about-text .display-title { margin-bottom: 0.75rem; }
+  .about-text p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 1.25rem;
+  }
+  .about-signature {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-style: italic;
+    color: var(--gold);
+    margin-top: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+  .about-signature-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  /* =====================
+     MENU / PRODUCTS
+  ===================== */
+  .menu-section { background: var(--choc); padding: 6rem 2rem; }
+  .menu-header { text-align: center; margin-bottom: 3.5rem; }
+  .menu-header .eyebrow { color: var(--rose-light); }
+  .menu-header .display-title { color: var(--gold-pale); }
+  .menu-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(180,135,58,0.3);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .menu-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: rgba(212,170,106,0.6);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 8px;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+  }
+  .menu-tab.active, .menu-tab:hover {
+    background: var(--gold);
+    color: var(--choc);
+  }
+  .menu-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .menu-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(180,135,58,0.2);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .menu-card:hover {
+    border-color: rgba(180,135,58,0.5);
+    transform: translateY(-4px);
+  }
+  /* Oval image frame inside card */
+  .menu-card-img {
+    padding: 2rem 2rem 0;
+    display: flex;
+    justify-content: center;
+  }
+  .oval-mask {
+    width: 140px;
+    height: 160px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    overflow: hidden;
+    background: var(--choc-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .oval-mask.rose-border { border-color: var(--rose); }
+  .oval-mask svg { width: 100px; height: 100px; }
+  .menu-card-body { padding: 1.25rem; }
+  .menu-card-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+  }
+  .menu-card-desc {
+    font-size: 13px;
+    color: rgba(212,170,106,0.6);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .menu-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(180,135,58,0.15);
+    padding-top: 1rem;
+  }
+  .menu-card-price {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--gold-light);
+  }
+  .menu-card-price span {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(212,170,106,0.5);
+    letter-spacing: 1px;
+  }
+  .menu-card-btn {
+    background: transparent;
+    border: 1px solid rgba(180,135,58,0.4);
+    color: var(--gold-light);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+    font-weight: 400;
+    transition: all 0.2s;
+  }
+  .menu-card-btn:hover { background: var(--gold); color: var(--choc); border-color: var(--gold); }
+
+  /* =====================
+     PHOTO GALLERY (mosaic)
+  ===================== */
+  .gallery-section { padding: 6rem 2rem; background: var(--ivory-deep); }
+  .gallery-header { text-align: center; margin-bottom: 3rem; }
+  .mosaic-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 260px 260px;
+    gap: 8px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 2px solid var(--gold-pale);
+  }
+  .mosaic-cell {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mosaic-cell:first-child { grid-row: 1 / 3; }
+  .mosaic-cell-bg {
+    width: 100%; height: 100%;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mosaic-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(46,27,14,0.55) 0%, transparent 55%);
+    z-index: 1;
+  }
+  .mosaic-label {
+    position: absolute;
+    bottom: 14px; left: 14px;
+    z-index: 2;
+    background: var(--gold);
+    color: var(--choc);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+  }
+  .upload-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    z-index: 3;
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+  .upload-hint i { font-size: 28px; opacity: 0.4; }
+  .gallery-note {
+    max-width: 600px;
+    margin: 1.5rem auto 0;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* =====================
+     HOW IT WORKS
+  ===================== */
+  .how-section { padding: 6rem 2rem; }
+  .how-inner { max-width: 1100px; margin: 0 auto; }
+  .how-header { text-align: center; margin-bottom: 4rem; }
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    position: relative;
+  }
+  .how-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 12%;
+    width: 76%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-pale), var(--rose-light), var(--gold-pale), transparent);
+  }
+  .how-step { text-align: center; position: relative; }
+  .how-step-num {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--ivory);
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gold);
+    position: relative;
+    z-index: 1;
+    background: var(--ivory);
+  }
+  .how-step-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--choc);
+    margin-bottom: 0.5rem;
+  }
+  .how-step-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* =====================
+     ORDER FORM
+  ===================== */
+  .order-section { background: var(--choc); padding: 6rem 2rem; }
+  .order-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .order-info .eyebrow { color: var(--rose-light); margin-bottom: 0.75rem; }
+  .order-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 500;
+    color: var(--gold-pale);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .order-title em { font-style: italic; color: var(--rose-light); }
+  .order-desc {
+    color: rgba(245,237,219,0.65);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .order-features { list-style: none; }
+  .order-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--gold-light);
+    font-weight: 300;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(180,135,58,0.12);
+  }
+  .order-features li i { color: var(--rose-light); font-size: 18px; flex-shrink: 0; }
+  .pay-methods-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  .pay-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(180,135,58,0.3);
+    border-radius: var(--radius-sm);
+    padding: 6px 14px;
+    font-size: 11px;
+    color: var(--gold-light);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+  .pay-badge i { font-size: 14px; }
+
+  /* FORM */
+  .order-form {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(180,135,58,0.25);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+  }
+  .form-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--gold-light);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(180,135,58,0.2);
+  }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(212,170,106,0.7);
+    margin-bottom: 6px;
+  }
+  .form-control {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(180,135,58,0.25);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    color: var(--gold-pale);
+    font-size: 14px;
+    font-family: var(--font-body);
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-control:focus { border-color: var(--gold); }
+  .form-control::placeholder { color: rgba(180,135,58,0.35); }
+  select.form-control option { background: var(--choc); color: var(--gold-pale); }
+  textarea.form-control { resize: vertical; min-height: 90px; }
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--choc);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+  .form-note {
+    text-align: center;
+    font-size: 11px;
+    color: rgba(180,135,58,0.45);
+    margin-top: 1rem;
+    font-weight: 300;
+  }
+
+  /* =====================
+     EMAIL NOTIFICATIONS
+  ===================== */
+  .email-section { background: var(--rose-pale); padding: 5rem 2rem; border-top: 1px solid var(--rose-light); border-bottom: 1px solid var(--rose-light); }
+  .email-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center; }
+  .email-icon-wrap {
+    width: 80px; height: 80px;
+    background: var(--rose-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .email-icon-wrap i { font-size: 32px; color: var(--rose); }
+  .email-content h2 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--choc);
+    margin-bottom: 4px;
+  }
+  .email-content p { color: var(--choc-mid); font-size: 14px; font-weight: 300; margin-bottom: 1rem; }
+  .email-flow {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .email-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--white);
+    border: 1px solid var(--rose-light);
+    border-radius: var(--radius-pill);
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--rose);
+    font-weight: 400;
+  }
+  .email-tag i { font-size: 13px; }
+
+  /* =====================
+     TESTIMONIALS
+  ===================== */
+  .testimonials { padding: 6rem 2rem; background: var(--ivory); }
+  .testimonials-header { text-align: center; margin-bottom: 3rem; }
+  .testimonials-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .testimonial-card {
+    background: var(--white);
+    border: 1px solid var(--ivory-deep);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+  }
+  .testimonial-stars { color: var(--gold); font-size: 14px; margin-bottom: 1rem; letter-spacing: 2px; }
+  .testimonial-quote {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--choc-mid);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+  .testimonial-author { display: flex; align-items: center; gap: 10px; }
+  .testimonial-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    border: 2px solid var(--gold-light);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gold);
+  }
+  .testimonial-name { font-size: 13px; font-weight: 500; color: var(--choc); }
+  .testimonial-loc { font-size: 11px; color: var(--text-muted); font-weight: 300; }
+
+  /* =====================
+     NEWSLETTER
+  ===================== */
+  .newsletter { background: var(--ivory-deep); padding: 5rem 2rem; }
+  .newsletter-inner {
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .newsletter .eyebrow { margin-bottom: 0.75rem; }
+  .newsletter .display-title { font-size: 32px; margin-bottom: 1rem; }
+  .newsletter p { color: var(--text-muted); font-size: 14px; font-weight: 300; margin-bottom: 1.75rem; }
+  .newsletter-form { display: flex; gap: 0; max-width: 420px; margin: 0 auto; }
+  .newsletter-input {
+    flex: 1;
+    border: 1.5px solid var(--gold-pale);
+    border-right: none;
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    padding: 13px 16px;
+    font-size: 13px;
+    font-family: var(--font-body);
+    font-weight: 300;
+    background: var(--white);
+    outline: none;
+    color: var(--text-body);
+  }
+  .newsletter-input:focus { border-color: var(--gold); }
+  .newsletter-btn {
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    padding: 13px 20px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-family: var(--font-body);
+    transition: background 0.2s;
+  }
+  .newsletter-btn:hover { background: var(--gold-light); }
+
+  /* =====================
+     FOOTER
+  ===================== */
+  footer {
+    background: var(--choc);
+    padding: 4rem 2rem 2rem;
+    border-top: 2px solid var(--gold);
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(180,135,58,0.15);
+    margin-bottom: 2rem;
+  }
+  .footer-brand-name {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+  }
+  .footer-brand-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose-light);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+  .footer-brand-desc {
+    font-size: 13px;
+    color: rgba(212,170,106,0.5);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .footer-social { display: flex; gap: 12px; }
+  .footer-social a {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(180,135,58,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(212,170,106,0.6);
+    font-size: 18px;
+    transition: all 0.2s;
+  }
+  .footer-social a:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col h4 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 13px;
+    color: rgba(212,170,106,0.5);
+    font-weight: 300;
+    padding: 4px 0;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--gold-light); }
+  .footer-col p {
+    font-size: 13px;
+    color: rgba(212,170,106,0.5);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-bottom p { font-size: 12px; color: rgba(180,135,58,0.35); font-weight: 300; }
+
+  /* =====================
+     MOBILE
+  ===================== */
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .nav-mobile-btn { display: block; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero { padding: 3rem 1.5rem 2rem; }
+    .hero-visual { display: none; }
+    .hero-text { padding-bottom: 0; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-badge { right: 0; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .mosaic-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px 180px; }
+    .mosaic-cell:first-child { grid-row: auto; grid-column: 1 / 3; }
+    .how-steps { grid-template-columns: 1fr 1fr; }
+    .how-steps::before { display: none; }
+    .order-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .email-inner { grid-template-columns: 1fr; }
+    .email-icon-wrap { display: none; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .hero-products { gap: 0.5rem; }
+    .hero-prod-card { width: 100px; padding: 0.75rem 0.5rem 0; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar">
+  Handcrafted to order · Johannesburg &amp; surrounds · <span>DM us on Instagram to start your order</span>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      Tlhogi's Sweets &amp; Treats
+      <span>Handcrafted Bakes · Joburg</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#menu">Our Bakes</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#order">Order</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Place an Order</button>
+    <button class="nav-mobile-btn" aria-label="Menu"><i class="ti ti-menu-2"></i></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Tlhogi's Sweets &amp; Treats</div>
+      <h1 class="hero-title">
+        Baked with intention.<br>
+        <em>Gifted with love.</em>
+      </h1>
+      <p class="hero-body">
+        A Johannesburg home bakery making beautiful cakes, cupcakes, and scones — all by hand, all to order. No production lines. No shortcuts. Just Tlhogi, her kitchen, and a deep passion for the craft.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+          <i class="ti ti-cake"></i> Browse our bakes
+        </button>
+        <button class="btn-outline" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
+          Place an order
+        </button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-cake-wrap">
+        <div class="hero-products">
+          <!-- Cake illustration -->
+          <div class="hero-prod-card">
+            <svg viewBox="0 0 120 120" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="55" width="80" height="60" rx="5" fill="#5C3D28"/>
+              <ellipse cx="60" cy="55" rx="40" ry="10" fill="#6B4C39"/>
+              <rect x="20" y="55" width="80" height="6" rx="2" fill="#B8893A" opacity="0.9"/>
+              <circle cx="40" cy="78" r="7" fill="#C4768A"/>
+              <circle cx="40" cy="78" r="4" fill="#E8B4C0"/>
+              <circle cx="75" cy="82" r="6" fill="#C4768A"/>
+              <circle cx="75" cy="82" r="3.5" fill="#E8B4C0"/>
+              <circle cx="58" cy="70" r="5" fill="#C4768A"/>
+              <circle cx="58" cy="70" r="3" fill="#E8B4C0"/>
+              <line x1="60" y1="20" x2="60" y2="46" stroke="#B8893A" stroke-width="1.5" stroke-dasharray="3,2"/>
+              <circle cx="60" cy="18" r="4" fill="#D4AA6A"/>
+            </svg>
+            <div class="hero-prod-label">Celebration Cake</div>
+          </div>
+          <!-- Cupcakes illustration -->
+          <div class="hero-prod-card tall">
+            <svg viewBox="0 0 120 100" width="110" height="90" xmlns="http://www.w3.org/2000/svg">
+              <rect x="30" y="55" width="24" height="28" rx="3" fill="#5C3D28"/>
+              <path d="M26 55 Q42 55 54 55 L50 83 L30 83 Z" fill="#4A3020"/>
+              <ellipse cx="42" cy="44" rx="16" ry="18" fill="#C4768A"/>
+              <ellipse cx="42" cy="38" rx="10" ry="12" fill="#D4788A"/>
+              <circle cx="42" cy="28" r="5" fill="#E8B4C0"/>
+              <rect x="68" y="55" width="24" height="28" rx="3" fill="#5C3D28"/>
+              <path d="M64 55 Q80 55 92 55 L88 83 L68 83 Z" fill="#4A3020"/>
+              <ellipse cx="80" cy="44" rx="16" ry="18" fill="#B8893A"/>
+              <ellipse cx="80" cy="38" rx="10" ry="12" fill="#C9A84C"/>
+              <circle cx="80" cy="28" r="5" fill="#D4AA6A"/>
+              <circle cx="42" cy="28" r="2" fill="#FAF5EC"/>
+              <circle cx="80" cy="28" r="2" fill="#FAF5EC"/>
+            </svg>
+            <div class="hero-prod-label">Cupcakes</div>
+          </div>
+          <!-- Scones illustration -->
+          <div class="hero-prod-card">
+            <svg viewBox="0 0 120 100" width="110" height="100" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="40" cy="68" rx="26" ry="16" fill="#7A5A48"/>
+              <ellipse cx="40" cy="60" rx="24" ry="14" fill="#8B6145"/>
+              <ellipse cx="40" cy="55" rx="20" ry="10" fill="#9A7055"/>
+              <ellipse cx="80" cy="72" rx="22" ry="14" fill="#7A5A48"/>
+              <ellipse cx="80" cy="65" rx="20" ry="12" fill="#8B6145"/>
+              <ellipse cx="80" cy="60" rx="17" ry="9" fill="#9A7055"/>
+              <rect x="15" y="82" width="90" height="6" rx="3" fill="#5C3D28" opacity="0.4"/>
+            </svg>
+            <div class="hero-prod-label">Scones</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item"><i class="ti ti-home-heart"></i> Made from home with love</div>
+    <div class="trust-item"><i class="ti ti-star"></i> Self-taught, deeply passionate</div>
+    <div class="trust-item"><i class="ti ti-shopping-bag"></i> Made to order, never mass-produced</div>
+    <div class="trust-item"><i class="ti ti-map-pin"></i> Serving greater Johannesburg</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-portrait">
+        <div class="about-portrait-inner">
+          <i class="ti ti-camera"></i>
+          <span style="font-size:11px; letter-spacing:1px; text-transform:uppercase;">Your photo here</span>
+        </div>
+      </div>
+      <div class="about-badge">
+        <div class="about-badge-num">100%</div>
+        <div class="about-badge-label">Made with love</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="eyebrow">The story behind the bakes</div>
+      <h2 class="display-title">Meet <em>Tlhogi</em></h2>
+      <div class="section-divider"></div>
+      <p>
+        Tlhogi never took a class. She taught herself — one recipe, one fail, one triumph at a time. What started as a deep personal passion quietly became something her friends, family, and their networks simply couldn't stop talking about. Word spread the old-fashioned way: someone tasted something and couldn't stop thinking about it.
+      </p>
+      <p>
+        Today, Tlhogi's Sweets &amp; Treats serves the greater Johannesburg community from her home kitchen, where every order gets her full, undivided attention. No shortcuts. No fuss. Just beautiful bakes that arrive looking like they were made for the occasion — because they were.
+      </p>
+      <p>
+        Think Woolworths quality, but personal. Think a gift that says <em style="font-family:var(--font-display); color:var(--rose); font-style:italic;">I thought of you</em> before a single word is spoken.
+      </p>
+      <div class="about-signature">Tlhogi</div>
+      <div class="about-signature-label">Baker &amp; founder, Tlhogi's Sweets &amp; Treats</div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="menu-header">
+    <div class="eyebrow">Our bakes</div>
+    <h2 class="display-title" style="color:var(--gold-pale);">Every order, <em>made for you</em></h2>
+    <div class="section-divider center"></div>
+  </div>
+  <div class="menu-tabs">
+    <button class="menu-tab active">All</button>
+    <button class="menu-tab">Cakes</button>
+    <button class="menu-tab">Cupcakes</button>
+    <button class="menu-tab">Scones</button>
+  </div>
+  <div class="menu-grid">
+
+    <!-- CAKE 1 -->
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <div class="oval-mask">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+            <rect x="15" y="45" width="70" height="50" rx="5" fill="#5C3D28"/>
+            <ellipse cx="50" cy="45" rx="35" ry="10" fill="#6B4C39"/>
+            <rect x="15" y="45" width="70" height="5" fill="#B8893A" opacity="0.9"/>
+            <circle cx="33" cy="68" r="7" fill="#C4768A"/><circle cx="33" cy="68" r="4" fill="#E8B4C0"/>
+            <circle cx="65" cy="72" r="6" fill="#C4768A"/><circle cx="65" cy="72" r="3.5" fill="#E8B4C0"/>
+            <circle cx="50" cy="60" r="5" fill="#B8893A"/><circle cx="50" cy="60" r="2.5" fill="#D4AA6A"/>
+            <line x1="50" y1="15" x2="50" y2="36" stroke="#B8893A" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <circle cx="50" cy="12" r="4" fill="#D4AA6A"/>
+          </svg>
+        </div>
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Vanilla Dream</div>
+        <div class="menu-card-desc">Classic vanilla sponge with silky buttercream. Light, delicate, and endlessly elegant. Perfect for any occasion.</div>
+        <div class="menu-card-footer">
+          <div class="menu-card-price">R 350 <span>/ cake</span></div>
+          <button class="menu-card-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order this</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAKE 2 -->
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <div class="oval-mask rose-border">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+            <rect x="15" y="45" width="70" height="50" rx="5" fill="#3D2010"/>
+            <ellipse cx="50" cy="45" rx="35" ry="10" fill="#4A2A18"/>
+            <rect x="15" y="45" width="70" height="5" fill="#C4768A" opacity="0.9"/>
+            <rect x="15" y="68" width="70" height="3" rx="1" fill="#B8893A" opacity="0.5"/>
+            <circle cx="38" cy="78" r="5" fill="#E8B4C0" opacity="0.7"/>
+            <circle cx="62" cy="75" r="4" fill="#E8B4C0" opacity="0.7"/>
+            <text x="50" y="63" text-anchor="middle" font-size="11" fill="#C4768A" font-family="serif" font-style="italic">Rich</text>
+          </svg>
+        </div>
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Rich Chocolate</div>
+        <div class="menu-card-desc">Deep, indulgent chocolate cake layered with chocolate ganache. For the chocolate lovers who mean it.</div>
+        <div class="menu-card-footer">
+          <div class="menu-card-price">R 380 <span>/ cake</span></div>
+          <button class="menu-card-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order this</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAKE 3 -->
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <div class="oval-mask">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+            <rect x="15" y="45" width="70" height="50" rx="5" fill="#5A7A30"/>
+            <ellipse cx="50" cy="45" rx="35" ry="10" fill="#6B8A40"/>
+            <rect x="15" y="45" width="70" height="5" fill="#B8893A" opacity="0.8"/>
+            <circle cx="35" cy="72" r="6" fill="#FAF5EC" opacity="0.5"/>
+            <circle cx="60" cy="68" r="5" fill="#FAF5EC" opacity="0.4"/>
+            <text x="50" y="63" text-anchor="middle" font-size="10" fill="#FAF5EC" font-family="serif" opacity="0.8">🍋</text>
+          </svg>
+        </div>
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Lemon Drizzle</div>
+        <div class="menu-card-desc">Zesty lemon sponge with a tangy glaze. Bright, refreshing, and beautiful on any table — especially for afternoon teas.</div>
+        <div class="menu-card-footer">
+          <div class="menu-card-price">R 360 <span>/ cake</span></div>
+          <button class="menu-card-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order this</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAKE 4 -->
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <div class="oval-mask rose-border">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+            <rect x="15" y="45" width="70" height="50" rx="5" fill="#7A5A20"/>
+            <ellipse cx="50" cy="45" rx="35" ry="10" fill="#8A6A30"/>
+            <rect x="15" y="45" width="70" height="5" fill="#D4AA6A" opacity="0.9"/>
+            <circle cx="38" cy="70" r="5" fill="#B8893A" opacity="0.7"/>
+            <circle cx="62" cy="74" r="4" fill="#B8893A" opacity="0.6"/>
+            <circle cx="50" cy="65" r="3" fill="#D4AA6A" opacity="0.5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Carrot Cake</div>
+        <div class="menu-card-desc">Warmly spiced carrot cake crowned with cream cheese frosting. A cosy classic that never fails to impress.</div>
+        <div class="menu-card-footer">
+          <div class="menu-card-price">R 370 <span>/ cake</span></div>
+          <button class="menu-card-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order this</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUPCAKES -->
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <div class="oval-mask">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+            <rect x="28" y="58" width="20" height="26" rx="3" fill="#5C3D28"/>
+            <path d="M24 58 Q38 58 48 58 L44 84 L28 84 Z" fill="#4A3020"/>
+            <ellipse cx="38" cy="47" rx="14" ry="16" fill="#C4768A"/>
+            <ellipse cx="38" cy="41" rx="9" ry="11" fill="#D4788A"/>
+            <circle cx="38" cy="31" r="5" fill="#E8B4C0"/>
+            <circle cx="38" cy="31" r="2" fill="#FAF5EC"/>
+            <rect x="57" y="62" width="18" height="22" rx="3" fill="#5C3D28"/>
+            <ellipse cx="66" cy="52" rx="12" ry="14" fill="#B8893A"/>
+            <ellipse cx="66" cy="47" rx="8" ry="10" fill="#C9A84C"/>
+            <circle cx="66" cy="38" r="4" fill="#D4AA6A"/>
+          </svg>
+        </div>
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Cupcakes</div>
+        <div class="menu-card-desc">Individually iced cupcakes in vanilla, chocolate, lemon, and carrot flavours. Perfect for events, offices, and gifting.</div>
+        <div class="menu-card-footer">
+          <div class="menu-card-price">R 35 <span>/ each</span></div>
+          <button class="menu-card-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order this</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCONES -->
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <div class="oval-mask rose-border">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+            <ellipse cx="35" cy="65" rx="22" ry="13" fill="#7A5A48"/>
+            <ellipse cx="35" cy="58" rx="20" ry="12" fill="#8B6145"/>
+            <ellipse cx="35" cy="53" rx="17" ry="9" fill="#9A7055"/>
+            <ellipse cx="68" cy="70" rx="20" ry="12" fill="#7A5A48"/>
+            <ellipse cx="68" cy="63" rx="18" ry="10" fill="#8B6145"/>
+            <ellipse cx="68" cy="58" rx="15" ry="8" fill="#9A7055"/>
+            <text x="50" y="88" text-anchor="middle" font-size="10" fill="#D4AA6A" opacity="0.8" font-family="serif" font-style="italic">with cream &amp; jam</text>
+          </svg>
+        </div>
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Scones</div>
+        <div class="menu-card-desc">Buttery, flaky scones baked fresh to order. Perfect for a high tea, gifting, or a treat that makes someone feel truly thought of.</div>
+        <div class="menu-card-footer">
+          <div class="menu-card-price">R 25 <span>/ each</span></div>
+          <button class="menu-card-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order this</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header">
+    <div class="eyebrow">Fresh from the kitchen</div>
+    <h2 class="display-title">A taste of <em>our work</em></h2>
+    <div class="section-divider center"></div>
+  </div>
+  <div class="mosaic-grid">
+    <div class="mosaic-cell" style="background: linear-gradient(135deg,#3D2010,#5C3D28);">
+      <div class="upload-hint"><i class="ti ti-photo"></i><span>Add your best photo</span></div>
+      <div class="mosaic-overlay"></div>
+      <div class="mosaic-label">Signature cake</div>
+    </div>
+    <div class="mosaic-cell" style="background: linear-gradient(135deg,#4A2A18,#C4768A44);">
+      <div class="upload-hint"><i class="ti ti-photo"></i><span>Cupcakes</span></div>
+      <div class="mosaic-overlay"></div>
+      <div class="mosaic-label">Cupcakes</div>
+    </div>
+    <div class="mosaic-cell" style="background: linear-gradient(135deg,#3D2010,#B8893A44);">
+      <div class="upload-hint"><i class="ti ti-photo"></i><span>Celebration</span></div>
+      <div class="mosaic-overlay"></div>
+      <div class="mosaic-label">Birthday</div>
+    </div>
+    <div class="mosaic-cell" style="background: linear-gradient(135deg,#2E1B0E,#5C3D28);">
+      <div class="upload-hint"><i class="ti ti-photo"></i><span>Scones</span></div>
+      <div class="mosaic-overlay"></div>
+      <div class="mosaic-label">Scones</div>
+    </div>
+    <div class="mosaic-cell" style="background: linear-gradient(135deg,#5A3020,#C4768A66);">
+      <div class="upload-hint"><i class="ti ti-photo"></i><span>Lemon drizzle</span></div>
+      <div class="mosaic-overlay"></div>
+      <div class="mosaic-label">Lemon drizzle</div>
+    </div>
+  </div>
+  <p class="gallery-note">
+    Each photo slot above is where your real cake photos go. The dark panels absorb any background differences — your cakes will look consistent and beautiful regardless of where they were photographed.
+  </p>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div class="how-header">
+      <div class="eyebrow">Simple process</div>
+      <h2 class="display-title">How to place <em>your order</em></h2>
+      <div class="section-divider center"></div>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">Fill the form</div>
+        <div class="how-step-desc">Tell us the occasion, flavour, number of servings, and your event date.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">Get your quote</div>
+        <div class="how-step-desc">Tlhogi will confirm your order and send a personalised quote within 24 hours.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">Pay your deposit</div>
+        <div class="how-step-desc">A 50% deposit secures your date. Pay via card, EFT, PayFast, or SnapScan.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">4</div>
+        <div class="how-step-title">Collect or receive</div>
+        <div class="how-step-desc">Pick up from Joburg or arrange delivery. Balance is due 3 days before your event.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL NOTIFICATIONS -->
+<div class="email-section">
+  <div class="email-inner container">
+    <div class="email-icon-wrap">
+      <i class="ti ti-mail-forward"></i>
+    </div>
+    <div class="email-content">
+      <h2>You'll always know what's happening</h2>
+      <p>Automated emails keep you in the loop from the moment you order to the day of your event.</p>
+      <div class="email-flow">
+        <div class="email-tag"><i class="ti ti-check"></i> Order confirmed</div>
+        <div class="email-tag"><i class="ti ti-clock"></i> Baking in progress</div>
+        <div class="email-tag"><i class="ti ti-gift"></i> Ready for collection</div>
+        <div class="email-tag"><i class="ti ti-star"></i> Leave a review</div>
+        <div class="email-tag"><i class="ti ti-calendar-event"></i> Anniversary reminder</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER FORM -->
+<section class="order-section" id="order">
+  <div class="order-inner">
+    <div class="order-info">
+      <div class="eyebrow">Place your order</div>
+      <h2 class="order-title">Ready to order something <em>special?</em></h2>
+      <p class="order-desc">
+        Fill in the form and Tlhogi will personally respond within 24 hours to confirm your order, discuss any customisations, and send your quote. Every order is made fresh, just for you.
+      </p>
+      <ul class="order-features">
+        <li><i class="ti ti-shield-lock"></i> Secure payment processing</li>
+        <li><i class="ti ti-credit-card"></i> Credit &amp; debit card accepted</li>
+        <li><i class="ti ti-building-bank"></i> EFT / bank transfer</li>
+        <li><i class="ti ti-device-mobile"></i> PayFast &amp; SnapScan</li>
+        <li><i class="ti ti-receipt-2"></i> 50% deposit to confirm your date</li>
+        <li><i class="ti ti-calendar-check"></i> Balance due 3 days before collection</li>
+        <li><i class="ti ti-truck-delivery"></i> Collection or delivery (Joburg area)</li>
+      </ul>
+      <div class="pay-methods-list">
+        <div class="pay-badge"><i class="ti ti-credit-card"></i> Card</div>
+        <div class="pay-badge"><i class="ti ti-building-bank"></i> EFT</div>
+        <div class="pay-badge"><i class="ti ti-device-mobile"></i> PayFast</div>
+        <div class="pay-badge"><i class="ti ti-scan"></i> SnapScan</div>
+      </div>
+    </div>
+    <div class="order-form">
+      <div class="form-title">Your order request</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Your name</label>
+          <input class="form-control" type="text" placeholder="e.g. Thandi Mokoena"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contact number</label>
+          <input class="form-control" type="tel" placeholder="e.g. 082 000 0000"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email address</label>
+        <input class="form-control" type="email" placeholder="you@email.com"/>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">What would you like?</label>
+          <select class="form-control">
+            <option value="">Select a bake...</option>
+            <option>Vanilla cake</option>
+            <option>Chocolate cake</option>
+            <option>Lemon drizzle cake</option>
+            <option>Carrot cake</option>
+            <option>Cupcakes</option>
+            <option>Scones</option>
+            <option>Mixed / multiple</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Occasion</label>
+          <select class="form-control">
+            <option value="">Select...</option>
+            <option>Birthday</option>
+            <option>Baby shower</option>
+            <option>Wedding / engagement</option>
+            <option>Corporate event</option>
+            <option>Anniversary</option>
+            <option>Just because</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Event date</label>
+          <input class="form-control" type="date"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Servings / quantity</label>
+          <input class="form-control" type="text" placeholder="e.g. 20 people / 12 cupcakes"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Special requests</label>
+        <textarea class="form-control" placeholder="Colours, themes, dietary requirements, personalisation..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Collection or delivery?</label>
+        <select class="form-control">
+          <option value="">Select...</option>
+          <option>I'll collect from you</option>
+          <option>I need delivery (Joburg area)</option>
+        </select>
+      </div>
+      <button class="form-submit">Send my order request →</button>
+      <p class="form-note">Tlhogi will respond within 24 hours · No payment is taken here</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-header">
+    <div class="eyebrow">What people say</div>
+    <h2 class="display-title">Baked with love, <em>remembered always</em></h2>
+    <div class="section-divider center"></div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-quote">"The carrot cake was honestly the best I've ever had. Everyone at the baby shower was asking where it came from."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">NM</div>
+        <div>
+          <div class="testimonial-name">Nandi M.</div>
+          <div class="testimonial-loc">Sandton, Joburg</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-quote">"I ordered cupcakes for my team at the office. They were gone in 10 minutes and I had colleagues asking me for the number for weeks."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">KD</div>
+        <div>
+          <div class="testimonial-name">Keitumetse D.</div>
+          <div class="testimonial-loc">Midrand, Joburg</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-quote">"The scones were absolutely divine — served them at a high tea and everyone thought I'd ordered from a fancy bakery. I'll be back!"</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">PL</div>
+        <div>
+          <div class="testimonial-name">Palesa L.</div>
+          <div class="testimonial-loc">Soweto, Joburg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <div class="eyebrow">Stay in the loop</div>
+    <h2 class="display-title">New flavours. <em>Special offers.</em></h2>
+    <p>Join Tlhogi's mailing list for seasonal specials, new menu additions, and first access to her limited-availability slots.</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" placeholder="your@email.com"/>
+      <button class="newsletter-btn">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Tlhogi's Sweets &amp; Treats</div>
+        <div class="footer-brand-tag">Handcrafted Bakes · Johannesburg</div>
+        <p class="footer-brand-desc">A home bakery built on passion, not production lines. Every cake, cupcake, and scone is made by hand, to order, with love.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+          <a href="#" aria-label="TikTok"><i class="ti ti-brand-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Our bakes</h4>
+        <a href="#menu">Celebration cakes</a>
+        <a href="#menu">Vanilla cake</a>
+        <a href="#menu">Chocolate cake</a>
+        <a href="#menu">Lemon drizzle</a>
+        <a href="#menu">Carrot cake</a>
+        <a href="#menu">Cupcakes</a>
+        <a href="#menu">Scones</a>
+      </div>
+      <div class="footer-col">
+        <h4>Quick links</h4>
+        <a href="#about">About Tlhogi</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#how">How it works</a>
+        <a href="#order">Place an order</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <p>hello@tlhogisweetsandtreats.co.za</p>
+        <p style="margin-top:8px;">+27 (0)__ ___ ____</p>
+        <p style="margin-top:8px;">Johannesburg, Gauteng</p>
+        <p style="margin-top:8px;">Mon – Sat · 8am to 6pm</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Tlhogi's Sweets &amp; Treats. All rights reserved.</p>
+      <p>Handcrafted in Johannesburg, South Africa 🇿🇦</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Tab switching (visual only — full JS filter can be wired to real products)
+  document.querySelectorAll('.menu-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
