@@ -186,7 +186,7 @@
     transition: background 0.2s;
   }
   .nav-cta:hover { background: var(--choc-mid); }
-  .nav-mobile-btn { display: none; background: none; border: none; font-size: 24px; color: var(--choc); }
+  .nav-mobile-btn { display: none; }
 
   /* =====================
      HERO
@@ -1002,30 +1002,220 @@
   .footer-bottom p { font-size: 12px; color: rgba(180,135,58,0.35); font-weight: 300; }
 
   /* =====================
-     MOBILE
+     MOBILE NAV DRAWER
   ===================== */
-  @media (max-width: 768px) {
-    .nav-links, .nav-cta { display: none; }
-    .nav-mobile-btn { display: block; }
-    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
-    .hero { padding: 3rem 1.5rem 2rem; }
-    .hero-visual { display: none; }
-    .hero-text { padding-bottom: 0; }
+  .nav-mobile-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 26px;
+    color: var(--choc);
+    padding: 4px;
+    z-index: 110;
+  }
+  .nav-drawer {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 78%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--choc);
+    z-index: 109;
+    padding: 5.5rem 2rem 2rem;
+    transition: right 0.3s ease;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.25);
+  }
+  .nav-drawer.open { right: 0; }
+  .nav-drawer-links { list-style: none; display: flex; flex-direction: column; gap: 0; margin-bottom: 2rem; }
+  .nav-drawer-links li { border-bottom: 1px solid rgba(180,135,58,0.15); }
+  .nav-drawer-links a {
+    display: block;
+    padding: 16px 4px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold-pale);
+  }
+  .nav-drawer-cta {
+    display: block;
+    width: 100%;
+    background: var(--gold);
+    color: var(--choc);
+    border: none;
+    padding: 14px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+    text-align: center;
+  }
+  .nav-drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 108;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .nav-drawer-overlay.open { opacity: 1; pointer-events: auto; }
+  .nav-drawer-close {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 26px;
+    color: var(--gold-light);
+  }
+
+  /* =====================
+     STICKY MOBILE ORDER BAR
+  ===================== */
+  .mobile-order-bar {
+    display: none;
+  }
+
+  /* =====================
+     RESPONSIVE TIERS
+  ===================== */
+
+  /* Tablet & below */
+  @media (max-width: 900px) {
+    .container { padding: 0 1.5rem; }
     .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .about-badge { right: 0; }
-    .menu-grid { grid-template-columns: 1fr; }
-    .mosaic-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px 180px; }
-    .mosaic-cell:first-child { grid-row: auto; grid-column: 1 / 3; }
-    .how-steps { grid-template-columns: 1fr 1fr; }
+    .menu-grid { grid-template-columns: repeat(2, 1fr); }
+    .how-steps { grid-template-columns: 1fr 1fr; row-gap: 2.5rem; }
     .how-steps::before { display: none; }
-    .order-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .email-inner { grid-template-columns: 1fr; }
-    .email-icon-wrap { display: none; }
+    .order-inner { grid-template-columns: 1fr; gap: 3rem; }
     .testimonials-grid { grid-template-columns: 1fr; }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .hero-products { gap: 0.5rem; }
-    .hero-prod-card { width: 100px; padding: 0.75rem 0.5rem 0; }
+  }
+
+  /* Phones */
+  @media (max-width: 768px) {
+    body { font-size: 15px; }
+    .container { padding: 0 1.25rem; }
+
+    /* Nav */
+    .nav { padding: 0 1.25rem; }
+    .nav-inner { height: 60px; }
+    .nav-logo { font-size: 17px; }
+    .nav-logo span { font-size: 9px; letter-spacing: 2px; }
+    .nav-links, .nav-cta { display: none; }
+    .nav-mobile-btn { display: block; }
+    .announce-bar { font-size: 11px; padding: 8px 1rem; }
+
+    /* Hero: illustration moves below text instead of vanishing */
+    .hero { padding: 2rem 1.25rem 1.5rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-text { padding-bottom: 0; text-align: center; }
+    .hero-eyebrow { justify-content: center; }
+    .hero-body { margin: 0 auto 1.75rem; }
+    .hero-btns { justify-content: center; }
+    .hero-visual { order: 2; }
+    .hero-products { justify-content: center; flex-wrap: wrap; }
+    .hero-prod-card { width: 96px; padding: 0.75rem 0.5rem 0; }
+    .hero-prod-card.tall { padding-top: 1.25rem; }
+    .hero-prod-label { font-size: 10px; padding-bottom: 0.75rem; }
+    .btn-gold, .btn-outline { flex: 1; justify-content: center; min-width: 140px; }
+
+    .trust-strip { padding: 14px 1.25rem; }
+    .trust-inner { gap: 1.25rem 1.75rem; justify-content: center; }
+    .trust-item { font-size: 10px; }
+
+    /* About */
+    .about { padding: 3.5rem 1.25rem; }
+    .about-badge { right: 0; width: 84px; height: 84px; }
+    .about-badge-num { font-size: 20px; }
+    .about-badge-label { font-size: 8px; }
+    .about-text p { font-size: 14px; }
+    .about-signature { font-size: 28px; }
+
+    /* Menu */
+    .menu-section { padding: 3.5rem 1.25rem; }
+    .menu-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+    .menu-tabs { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .menu-tab { font-size: 10px; padding: 12px 4px; white-space: nowrap; }
+
+    /* Gallery */
+    .gallery-section { padding: 3.5rem 1.25rem; }
+    .mosaic-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; }
+    .mosaic-cell:first-child { grid-row: auto; grid-column: 1 / 3; }
+
+    /* How it works */
+    .how-section { padding: 3.5rem 1.25rem; }
+    .how-steps { grid-template-columns: 1fr 1fr; gap: 1.75rem 1rem; }
+    .how-step-title { font-size: 16px; }
+    .how-step-desc { font-size: 12px; }
+
+    /* Email banner */
+    .email-section { padding: 2.5rem 1.25rem; }
+    .email-inner { grid-template-columns: 1fr; text-align: center; gap: 1.25rem; }
+    .email-icon-wrap { margin: 0 auto; width: 64px; height: 64px; }
+    .email-flow { justify-content: center; }
+
+    /* Order */
+    .order-section { padding: 3.5rem 1.25rem; }
+    .order-inner { gap: 2.5rem; }
+    .order-form { padding: 1.5rem; }
     .form-row { grid-template-columns: 1fr; }
+    .pay-methods-list { justify-content: center; }
+
+    /* Testimonials */
+    .testimonials { padding: 3.5rem 1.25rem; }
+
+    /* Newsletter */
+    .newsletter { padding: 3.5rem 1.25rem; }
+    .newsletter-form { flex-direction: column; gap: 10px; max-width: 320px; }
+    .newsletter-input { border-radius: var(--radius-sm); border-right: 1.5px solid var(--gold-pale); }
+    .newsletter-btn { border-radius: var(--radius-sm); }
+
+    /* Footer */
+    footer { padding: 3rem 1.25rem 6rem; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+    .footer-social { justify-content: center; }
+    .footer-bottom { flex-direction: column; text-align: center; gap: 0.5rem; }
+
+    /* Sticky mobile order CTA */
+    body { padding-bottom: 64px; }
+    .mobile-order-bar {
+      display: flex;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 90;
+      background: var(--choc);
+      border-top: 2px solid var(--gold);
+      padding: 10px 1rem;
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+      gap: 10px;
+    }
+    .mobile-order-bar a {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .mobile-order-bar .mob-order-btn { background: var(--gold); color: var(--choc); }
+    .mobile-order-bar .mob-whatsapp-btn { background: rgba(255,255,255,0.08); color: var(--gold-light); border: 1px solid rgba(180,135,58,0.3); }
+  }
+
+  /* Small phones */
+  @media (max-width: 400px) {
+    .hero-title { font-size: 30px; }
+    .display-title { font-size: 26px; }
+    .hero-prod-card { width: 86px; }
+    .menu-tabs { justify-content: flex-start; }
+    .trust-inner { gap: 1rem 1.25rem; }
+    .footer-top { gap: 1.75rem; }
   }
 </style>
 </head>
@@ -1050,9 +1240,23 @@
       <li><a href="#order">Order</a></li>
     </ul>
     <button class="nav-cta" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Place an Order</button>
-    <button class="nav-mobile-btn" aria-label="Menu"><i class="ti ti-menu-2"></i></button>
+    <button class="nav-mobile-btn" id="navMobileBtn" aria-label="Open menu" aria-expanded="false"><i class="ti ti-menu-2"></i></button>
   </div>
 </nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="nav-drawer-overlay" id="navOverlay"></div>
+<div class="nav-drawer" id="navDrawer">
+  <button class="nav-drawer-close" id="navDrawerClose" aria-label="Close menu"><i class="ti ti-x"></i></button>
+  <ul class="nav-drawer-links">
+    <li><a href="#menu">Our Bakes</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#how">How it Works</a></li>
+    <li><a href="#order">Order</a></li>
+  </ul>
+  <a href="#order" class="nav-drawer-cta" id="navDrawerCta">Place an Order</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1064,7 +1268,7 @@
         <em>Gifted with love.</em>
       </h1>
       <p class="hero-body">
-        A Johannesburg home bakery making beautiful cakes, cupcakes, and scones — all by hand, all to order. No production lines. No shortcuts. Just Tlhogi, her kitchen, and a deep passion for the craft.
+        A Johannesburg home bakery making beautiful cakes, cupcakes, and scones, all by hand, all to order. No production lines. No shortcuts. Just Tlhogi, her kitchen, and a deep passion for the craft.
       </p>
       <div class="hero-btns">
         <button class="btn-gold" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
@@ -1162,10 +1366,10 @@
       <h2 class="display-title">Meet <em>Tlhogi</em></h2>
       <div class="section-divider"></div>
       <p>
-        Tlhogi never took a class. She taught herself — one recipe, one fail, one triumph at a time. What started as a deep personal passion quietly became something her friends, family, and their networks simply couldn't stop talking about. Word spread the old-fashioned way: someone tasted something and couldn't stop thinking about it.
+        Tlhogi trained properly, taking baking classes to sharpen her craft and learn the techniques behind every great cake. That foundation, paired with a deep personal passion, quickly became something her friends, family, and their networks couldn't stop talking about. Word spread the old fashioned way, someone tasted something and couldn't stop thinking about it.
       </p>
       <p>
-        Today, Tlhogi's Sweets &amp; Treats serves the greater Johannesburg community from her home kitchen, where every order gets her full, undivided attention. No shortcuts. No fuss. Just beautiful bakes that arrive looking like they were made for the occasion — because they were.
+        Today, Tlhogi's Sweets &amp; Treats serves the greater Johannesburg community from her home kitchen, where every order gets her full, undivided attention. No shortcuts, no fuss, just beautiful bakes that arrive looking like they were made for the occasion, because they were.
       </p>
       <p>
         Think Woolworths quality, but personal. Think a gift that says <em style="font-family:var(--font-display); color:var(--rose); font-style:italic;">I thought of you</em> before a single word is spoken.
@@ -1184,15 +1388,15 @@
     <div class="section-divider center"></div>
   </div>
   <div class="menu-tabs">
-    <button class="menu-tab active">All</button>
-    <button class="menu-tab">Cakes</button>
-    <button class="menu-tab">Cupcakes</button>
-    <button class="menu-tab">Scones</button>
+    <button class="menu-tab active" data-filter="all">All</button>
+    <button class="menu-tab" data-filter="cake">Cakes</button>
+    <button class="menu-tab" data-filter="cupcakes">Cupcakes</button>
+    <button class="menu-tab" data-filter="scones">Scones</button>
   </div>
   <div class="menu-grid">
 
     <!-- CAKE 1 -->
-    <div class="menu-card">
+    <div class="menu-card" data-category="cake">
       <div class="menu-card-img">
         <div class="oval-mask">
           <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
@@ -1218,7 +1422,7 @@
     </div>
 
     <!-- CAKE 2 -->
-    <div class="menu-card">
+    <div class="menu-card" data-category="cake">
       <div class="menu-card-img">
         <div class="oval-mask rose-border">
           <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
@@ -1243,7 +1447,7 @@
     </div>
 
     <!-- CAKE 3 -->
-    <div class="menu-card">
+    <div class="menu-card" data-category="cake">
       <div class="menu-card-img">
         <div class="oval-mask">
           <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
@@ -1258,7 +1462,7 @@
       </div>
       <div class="menu-card-body">
         <div class="menu-card-name">Lemon Drizzle</div>
-        <div class="menu-card-desc">Zesty lemon sponge with a tangy glaze. Bright, refreshing, and beautiful on any table — especially for afternoon teas.</div>
+        <div class="menu-card-desc">Zesty lemon sponge with a tangy glaze. Bright, refreshing, and beautiful on any table, especially for afternoon teas.</div>
         <div class="menu-card-footer">
           <div class="menu-card-price">R 360 <span>/ cake</span></div>
           <button class="menu-card-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order this</button>
@@ -1267,7 +1471,7 @@
     </div>
 
     <!-- CAKE 4 -->
-    <div class="menu-card">
+    <div class="menu-card" data-category="cake">
       <div class="menu-card-img">
         <div class="oval-mask rose-border">
           <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
@@ -1291,7 +1495,7 @@
     </div>
 
     <!-- CUPCAKES -->
-    <div class="menu-card">
+    <div class="menu-card" data-category="cupcakes">
       <div class="menu-card-img">
         <div class="oval-mask">
           <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
@@ -1319,7 +1523,7 @@
     </div>
 
     <!-- SCONES -->
-    <div class="menu-card">
+    <div class="menu-card" data-category="scones">
       <div class="menu-card-img">
         <div class="oval-mask rose-border">
           <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
@@ -1381,7 +1585,7 @@
     </div>
   </div>
   <p class="gallery-note">
-    Each photo slot above is where your real cake photos go. The dark panels absorb any background differences — your cakes will look consistent and beautiful regardless of where they were photographed.
+    Each photo slot above is where your real cake photos go. The dark panels absorb any background differences, so your cakes will look consistent and beautiful regardless of where they were photographed.
   </p>
 </section>
 
@@ -1567,7 +1771,7 @@
     </div>
     <div class="testimonial-card">
       <div class="testimonial-stars">★★★★★</div>
-      <div class="testimonial-quote">"The scones were absolutely divine — served them at a high tea and everyone thought I'd ordered from a fancy bakery. I'll be back!"</div>
+      <div class="testimonial-quote">"The scones were absolutely divine. We served them at a high tea and everyone thought I'd ordered from a fancy bakery. I'll be back!"</div>
       <div class="testimonial-author">
         <div class="testimonial-avatar">PL</div>
         <div>
@@ -1639,13 +1843,63 @@
   </div>
 </footer>
 
+<!-- STICKY MOBILE ORDER BAR -->
+<div class="mobile-order-bar">
+  <a href="https://wa.me/27000000000" target="_blank" rel="noopener" class="mob-whatsapp-btn">
+    <i class="ti ti-brand-whatsapp"></i> WhatsApp
+  </a>
+  <a href="#order" class="mob-order-btn">
+    <i class="ti ti-cake"></i> Place an Order
+  </a>
+</div>
+
 <script>
-  // Tab switching (visual only — full JS filter can be wired to real products)
-  document.querySelectorAll('.menu-tab').forEach(tab => {
+  // Menu category filter
+  const tabs = document.querySelectorAll('.menu-tab');
+  const cards = document.querySelectorAll('.menu-card');
+
+  tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
+
+      const filter = tab.getAttribute('data-filter');
+
+      cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     });
+  });
+
+  // Mobile nav drawer
+  const navBtn = document.getElementById('navMobileBtn');
+  const navDrawer = document.getElementById('navDrawer');
+  const navOverlay = document.getElementById('navOverlay');
+  const navClose = document.getElementById('navDrawerClose');
+
+  function openDrawer() {
+    navDrawer.classList.add('open');
+    navOverlay.classList.add('open');
+    navBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    navDrawer.classList.remove('open');
+    navOverlay.classList.remove('open');
+    navBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  navBtn.addEventListener('click', openDrawer);
+  navClose.addEventListener('click', closeDrawer);
+  navOverlay.addEventListener('click', closeDrawer);
+  navDrawer.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeDrawer);
   });
 </script>
 </body>
